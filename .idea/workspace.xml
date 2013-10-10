@@ -15,6 +15,7 @@
     <file path="/Obstacle.js" changelist="7abbc057-429c-4c1f-83db-88407e973e20" time="1380893939305" ignored="false" />
     <file path="/Bullet.js" changelist="7abbc057-429c-4c1f-83db-88407e973e20" time="1381070988470" ignored="false" />
     <file path="/multiRoomChatServer.js" changelist="7abbc057-429c-4c1f-83db-88407e973e20" time="1381082107004" ignored="false" />
+    <file path="/server.js" changelist="7abbc057-429c-4c1f-83db-88407e973e20" time="1381394057630" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +34,7 @@
     <favorites_list name="nodeJS" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.46875">
+    <splitter split-orientation="horizontal" split-proportion="0.18338816">
       <split-first>
         <leaf>
           <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
@@ -49,9 +50,7 @@
             <entry file="file://$PROJECT_DIR$/PartyLocal.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="178" column="63" selection-start="6517" selection-end="6517" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="n#!!block;n#gestionPersonnage#0;n#!!block;n#PartyLocal#0" expanded="false" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -59,7 +58,7 @@
           <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="96" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
+                <state line="20" column="96" selection-start="478" selection-end="478" vertical-scroll-proportion="-11.791667">
                   <folding />
                 </state>
               </provider>
@@ -77,7 +76,7 @@
           <file leaf-file-name="simpleChat.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/simpleChat.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="31" column="18" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.7131902">
+                <state line="42" column="25" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.71452147">
                   <folding />
                 </state>
               </provider>
@@ -96,10 +95,19 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="simpleChatServer.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="simpleChatServer.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/simpleChatServer.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="36" selection-start="752" selection-end="752" vertical-scroll-proportion="0.40772533">
+                <state line="16" column="5" selection-start="0" selection-end="6056" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="server.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/server.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="28" column="33" selection-start="827" selection-end="827" vertical-scroll-proportion="0.5898876">
                   <folding />
                 </state>
               </provider>
@@ -156,6 +164,7 @@
         <option value="$PROJECT_DIR$/Personnage.js" />
         <option value="$PROJECT_DIR$/PartyLocal.js" />
         <option value="$PROJECT_DIR$/simpleChatServer.js" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -267,7 +276,6 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2496464" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13941967" sideWeight="0.67027026" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -278,6 +286,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -344,13 +353,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BlocSquare.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="82" selection-start="1773" selection-end="1780" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Bullet.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="4" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
@@ -375,13 +377,6 @@
         <state line="11" column="0" selection-start="197" selection-end="906" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="96" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gun.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -401,13 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="56" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/multiRoomChatServer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="82" column="8" selection-start="3203" selection-end="3229" vertical-scroll-proportion="0.0">
@@ -418,22 +406,13 @@
     <entry file="file://$PROJECT_DIR$/PartyLocal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="178" column="63" selection-start="6517" selection-end="6517" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!block;n#gestionPersonnage#0;n#!!block;n#PartyLocal#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Map.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="80" column="84" selection-start="2314" selection-end="2314" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simpleChat.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="18" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.7131902">
           <folding />
         </state>
       </provider>
@@ -445,9 +424,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="56" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="96" selection-start="478" selection-end="478" vertical-scroll-proportion="-11.791667">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simpleChat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="25" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.71452147">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/simpleChatServer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="36" selection-start="752" selection-end="752" vertical-scroll-proportion="0.40772533">
+        <state line="16" column="5" selection-start="0" selection-end="6056" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="33" selection-start="827" selection-end="827" vertical-scroll-proportion="0.5898876">
           <folding />
         </state>
       </provider>
