@@ -1,0 +1,15 @@
+{
+  "name": "roosensp",
+  "subdomain": "jetpackGame",
+  "scripts": {
+    "start": "server.js"
+  },
+  "version": "0.10.0-28",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "express": "3.4.x",
+    "socket.io": "0.9.x"
+  }
+}

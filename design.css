@@ -1,0 +1,83 @@
+#scoreside
+{
+    width: 50%;
+    text-align: center ;
+    float:right;
+}
+
+#gameside
+{
+    float:left ;
+    width: 50%;
+    text-align: center ;
+}
+#gameinterface
+{
+  height: 600px ;
+}
+#templatemo_header_wrapper {
+    width: 100%;
+    height: 75px;
+    background-color : brown ;
+    color : #ffffff;
+    font-size: 40px;
+    text-align: center;
+    font-style: inherit;
+    vertical-align: middle;
+    padding-top: 30px;
+
+}
+#titre_table
+{
+    width: 100%;
+    background-color : brown ;
+    color : #ffffff;
+    font-size: 30px;
+    text-align: center;
+    font-style: inherit;
+    vertical-align: middle;
+
+}
+#score
+{
+    padding: 0px;
+    margin:  0px ;
+    display: inline-block;
+
+}
+#scoreTeam
+{
+    text-align:  center ;
+    font-size: 30px;
+    font-style: inherit;
+    margin-bottom: 10px;
+}
+.cellTableScore
+{
+    width: 24%;
+    font-size: 20px;
+      display: inline;
+    text-align:  left ;
+
+
+}
+.cellTableScore2
+{
+    width: 24%;
+    font-size: 20px;
+    display: inline;
+    text-align:  left ;
+    background-color: rgb(192,192,192);
+
+
+}
+
+#hor-minimalist-b {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    background: #fff;
+    width: 480px;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 20px;
+}
