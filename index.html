@@ -2,20 +2,53 @@
 <html>
 <head>
     <title> GAME</title>
+    <link type="text/css" rel="stylesheet" href="design.css">
     <script src="jquery.min.js"></script>
 
 </head>
 <body>
-<div id="score">
 
+ <div id="templatemo_header_wrapper">
+   <b>  JetPack Game     </b>
+ </div>
+
+<div id="scoreTeam">
+    BLUE :0 | YELLOW :0
 </div>
-<div id="canvascontainer" style="float:left ;">
 
-    <canvas id="myCanvas" width="600" height="600" style="border: 1px solid black ;">
+<section id="gameinterface">
+
+    <section id="gameside">
+     <div id="canvascontainer" >
+
+        <canvas id="myCanvas" width="600" height="600" style="border: 1px solid black ;">
+        </canvas>
+    </div>
+    </section>
+
+    <section id="scoreside">
+      <div id="titre_table">
+          <b>
+              Users
+          </b>
+
+      </div>
+
+         <div id="score">
+
+         </div>
+    </section>
+</section>
+
+<section id="chat">
+    <div id="conversation">
+
+    </div>
+    <input id="data" style="width:200px;" />
+    <input type="button" id="datasend" value="send" />
+</section>
 
 
-    </canvas>
-</div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="BlocSquare.js"></script>
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
@@ -28,15 +61,5 @@
 <script src="Personnage.js"></script>
 <script src="Gun.js"></script>
 <script src="main.js"></script>
-
-<div style="float:right;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-    <b>USERS</b>
-    <div id="users"></div>
-</div>
-<div style="float:right;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-    <div id="conversation"></div>
-    <input id="data" style="width:200px;" />
-    <input type="button" id="datasend" value="send" />
-</div>
 </body>
 </html>

@@ -5,7 +5,7 @@
  * Time: 15:47
  * To change this template use File | Settings | File Templates.
  */
-function Bullet(x , y ,c)
+function Bullet(x , y ,c , timeShooter)
 {
 
     this.tireur ;
@@ -18,15 +18,14 @@ function Bullet(x , y ,c)
     this.height = 20 ;
     this.afficher = afficher ;
     this.toucher = toucher ;
-
-
+    this.timeShoot = timeShooter ;
     this.blocsquare = new blocsquare(this.context) ;
 
     function afficher(viewX, viewY)
     {
-
         this.blocsquare.makeSquare(this.x , this.y , this.width , this.height , "black" , viewX , viewY)  ;
     }
+
     function toucher()
     {
         square = new Geometrique(this.context) ;

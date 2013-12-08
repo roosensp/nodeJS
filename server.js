@@ -22,11 +22,11 @@ app.configure(function () {
 });
 
 // launch the http server on given port
-// server.listen(8080);
-var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1" ;
-var port =   process.env.OPENSHIFT_NODEJS_PORT || 8000 ;
+ server.listen(8080);
+//var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1" ;
+//var port =   process.env.OPENSHIFT_NODEJS_PORT || 80 ;
 
-  server.listen(port  , ipaddr) ;
+//  server.listen(port  , ipaddr) ;
 
 // routing
 app.get('/', function (req, res) {

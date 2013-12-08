@@ -29,6 +29,7 @@ app.get('/', function (req, res) {
 
 // usernames which are currently connected to the chat
 var usernames = {};
+var users = new Array() ;
 var premierJoueur = true ;
 var rooms = new Array() ;
 Array.prototype.unset = function(index){
@@ -117,6 +118,7 @@ io.sockets.on('connection', function (socket) {
 
                 socket.room = roomSelect ;
                 usernames[username] = username;
+
                 //    premierJoueur = false ;
                 socket.join(roomSelect) ;
                 socket.emit("validation" , username ) ;
@@ -135,18 +137,6 @@ io.sockets.on('connection', function (socket) {
                 needAllPlayerPosition(username , rooms[roomSelect][0]) ;
 
             }
-
-
-
-
-
-
-//                // echo to client they've connected
-//                socket.emit('updatechat', 'SERVER', 'you have connected');
-//                // echo globally (all clients) that a person has connected
-//                socket.emit('updatechat', 'SERVER', username + ' has connected');
-//                // update the list of users in chat, client-side
-//                io.sockets.emit('updateusers', usernames);
         }
 
     });

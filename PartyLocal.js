@@ -20,6 +20,7 @@ function PartyLocal( socket)
     this.mousePositionY = 0 ;
     this.socket = socket ;
 
+
     // methodes
     this.start = start ;
     this.gestionPersonnage = gestionPersonnage ;
@@ -35,6 +36,12 @@ function PartyLocal( socket)
 
     this.choixEquipe  = choixEquipe ;
     this.outPlayer = outPlayer ;
+    this.restart = restart ;
+    this.mainLoop = mainLoop ;
+    this.getTimeAction = getTimeAction ;
+    this.scoreYellow = 0 ;
+    this.scoreBlue   = 0 ;
+    this.timeStart ;
 
     Array.prototype.unset = function(index){
         if(index > -1){
@@ -45,13 +52,21 @@ function PartyLocal( socket)
 
     function start()
     {
-          this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
-          this.map = new Map(this.viewX , this.viewY , this.context ) ;
-          this.gestionPersonnage() ;
-          this.gestionShoot() ;
-        //  this.p.afficher() ;
-          this.gestionAutreJoueur() ;
-          window.requestAnimationFrame($.proxy(function() {this.start()}, this) )  ;
+
+        this.timeStart  = new Date().getTime() ;
+        this.mainLoop() ;
+
+    }
+
+    function mainLoop()
+    {
+        this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
+        this.map = new Map(this.viewX , this.viewY , this.context ) ;
+        this.gestionPersonnage() ;
+        this.gestionShoot() ;
+        this.p.afficher() ;
+        this.gestionAutreJoueur() ;
+        window.requestAnimationFrame($.proxy(function() {this.mainLoop()}, this) )  ;
     }
 
 
@@ -89,9 +104,6 @@ function PartyLocal( socket)
         }
         if (limitM == 0)
         {
-
-
-
             this.viewY   += this.p.vitesseY ;
             this.p.mapY  += this.p.vitesseY ;
             this.viewX   += this.p.vitesseX ;
@@ -105,38 +117,38 @@ function PartyLocal( socket)
         if (limitM == 3)
         {
 
-           // this.p.vitesseY = 0 ;
-           // this.p.vitesseX = 0 ;
+            // this.p.vitesseY = 0 ;
+            // this.p.vitesseX = 0 ;
 
         }
     }
 
     function limiterMouvementY(potentielX , potentielY)
     {
-          var rep = 0 ;
-          for(var i = 0 ; i< this.map.blocs.length ; i++)
-          {
-              if((this.map.blocs[i].NY < (this.p.mapY + this.p.vitesseY + this.p.height) &&  (this.map.blocs[i].NY + this.map.blocs[i].NHeight)> (this.p.mapY +  this.p.vitesseY) ) &&
+        var rep = 0 ;
+        for(var i = 0 ; i< this.map.blocs.length ; i++)
+        {
+            if((this.map.blocs[i].NY < (this.p.mapY + this.p.vitesseY + this.p.height) &&  (this.map.blocs[i].NY + this.map.blocs[i].NHeight)> (this.p.mapY +  this.p.vitesseY) ) &&
                 (this.map.blocs[i].NX < (this.p.mapX + this.p.vitesseX + this.p.width) &&  (this.map.blocs[i].NX + this.map.blocs[i].NWidth)> (this.p.mapX +this.p.vitesseX))  )
-             {
+            {
 
-                 if((this.map.blocs[i].NY < (this.p.mapY  + this.p.height) &&  (this.map.blocs[i].NY + this.map.blocs[i].NHeight)> (this.p.mapY) ) &&
-                     (this.map.blocs[i].NX < (this.p.mapX + this.p.vitesseX + this.p.width) &&  (this.map.blocs[i].NX + this.map.blocs[i].NWidth)> (this.p.mapX +this.p.vitesseX))  )
-                 {
-                        // no Y vitess
-                         rep =  1 ;
-                 }
-                 if((this.map.blocs[i].NY < (this.p.mapY + this.p.vitesseY + this.p.height) &&  (this.map.blocs[i].NY + this.map.blocs[i].NHeight)> (this.p.mapY +  this.p.vitesseY) ) &&
-                     (this.map.blocs[i].NX < (this.p.mapX  + this.p.width) &&  (this.map.blocs[i].NX + this.map.blocs[i].NWidth)> (this.p.mapX ))  )
-                 {
-                     if(rep == 1)
-                     {
-                         return 3 ;
-                     }
-                     rep =  2 ;
-                 }
-             }
-          }
+                if((this.map.blocs[i].NY < (this.p.mapY  + this.p.height) &&  (this.map.blocs[i].NY + this.map.blocs[i].NHeight)> (this.p.mapY) ) &&
+                    (this.map.blocs[i].NX < (this.p.mapX + this.p.vitesseX + this.p.width) &&  (this.map.blocs[i].NX + this.map.blocs[i].NWidth)> (this.p.mapX +this.p.vitesseX))  )
+                {
+                    // no Y vitess
+                    rep =  1 ;
+                }
+                if((this.map.blocs[i].NY < (this.p.mapY + this.p.vitesseY + this.p.height) &&  (this.map.blocs[i].NY + this.map.blocs[i].NHeight)> (this.p.mapY +  this.p.vitesseY) ) &&
+                    (this.map.blocs[i].NX < (this.p.mapX  + this.p.width) &&  (this.map.blocs[i].NX + this.map.blocs[i].NWidth)> (this.p.mapX ))  )
+                {
+                    if(rep == 1)
+                    {
+                        return 3 ;
+                    }
+                    rep =  2 ;
+                }
+            }
+        }
         return rep ;
 
     }
@@ -146,6 +158,9 @@ function PartyLocal( socket)
         for (var i = 0 ; i<this.shoots.length ; i++)
         {
             var shootDel = false ;
+            var allTeamDead = false ;
+            var countYellow ;
+            var countBlue   ;
             for(var j = 0 ; j < this.map.blocs.length ; j++)
             {
                 if((this.map.blocs[j].NY < (this.shoots[i].y + this.shoots[i].vitesseY + this.shoots[i].height) &&  (this.map.blocs[j].NY + this.map.blocs[j].NHeight)> (this.shoots[i].y +  this.shoots[i].vitesseY) ) &&
@@ -165,22 +180,43 @@ function PartyLocal( socket)
 
                     if(this.joueurs[j].name != this.shoots[i].tireur.name && this.joueurs[j].team != this.shoots[i].tireur.team)
                     {
-                        this.joueurs[j].aie() ;
 
-                        if(this.joueurs[j].life <= 0  )
+                        if(this.joueurs[j].etat == "life")
                         {
-                            if(this.joueurs[j].name == this.p.name)
+                            this.joueurs[j].aie() ;
+                            if(this.joueurs[j].life <= 0   )
                             {
-                                alert(" BOUUUU t'es mort ") ;
                                 this.joueurs[j].dead ++ ;
-                            }else
-                            {
-                                alert(this.joueurs[j].name + " is dead ") ;
-                                this.shoots[i].tireur.kill ++ ;
-                            }
+                                this.joueurs[j].etat = "dead" ;
+                                // retrouver le killeur et profiter pour savoir si la partie et terminé
+                                countYellow = 0 ;
+                                countBlue   = 0  ;
+                                for(var p = 0 ; p< this.joueurs.length ; p++)
+                                {
+                                    if(this.joueurs[p].etat == "life" )
+                                    {
+                                         if(this.joueurs[p].team == "yellow")
+                                         {
+                                             countYellow++ ;
+                                         }else
+                                         {
+                                             countBlue++
+                                         }
+                                    }
+                                    if(this.shoots[i].tireur.name == this.joueurs[p].name )
+                                    {
+                                        this.joueurs[p].kill ++  ;
+                                    }
+                                }
+                                if(countYellow == 0 || countBlue == 0)
+                                {
+                                    allTeamDead = true ;
+                                    break ;
+                                }
 
-                            this.joueurs.unset(j) ;
-                            j += -1 ;
+                                j += -1 ;
+
+                            }
                         }
                         shootDel = true ;
                         break ;
@@ -190,6 +226,7 @@ function PartyLocal( socket)
 
 
             }
+
 
 
             if(!shootDel)
@@ -203,19 +240,64 @@ function PartyLocal( socket)
                 i = i -1 ;
             }
 
+            if(allTeamDead)
+            {
+               if(countYellow == 0 )
+               {
+                  alert("The Blue team Win") ;
+                   this.scoreBlue++ ;
+               }else
+               {
+                   alert("The Yellow team Win") ;
+                   this.scoreYellow++ ;
+               }
+
+                $('#scoreTeam').html("") ;
+                $('#scoreTeam').append(" BLUE :" +  this.scoreBlue + " | YELLOW :" + this.scoreYellow ) ;
+                this.restart() ;
+
+            }
+
         }
     }
 
     function gestionAutreJoueur()
     {
         bloc = new blocsquare(this.context) ;
+        var table = "<table id='hor-minimalist-b' summary='Score'>" +
+        "<thead>" +
+            "<tr>" +
+                "<th scope='col'>Name</th>" +
+                "<th scope='col'>Kill</th>" +
+                "<th scope='col'>Dead</th>" +
+                "<th scope='col'>Life</th>" +
+                "<th scope='col'>Latence</th>"+
+                "</tr>" +
+            "</thead>" +
+        "<tbody>";
+
+
         for(var i = 0 ; i< this.joueurs.length ; i++)
         {
             // verifier joueur visibilité map
-         //   this.map.blocsquare( this.joueurs[i].mapX   , this.joueurs[i].mapY, this.joueurs[i].width , this.joueurs[i].height ) ;
-            console.log("COLOR => " +this.joueurs[i].team  )
-            bloc.makeSquare(this.joueurs[i].mapX   , this.joueurs[i].mapY, this.joueurs[i].width , this.joueurs[i].height , this.joueurs[i].team , this.viewX , this.viewY) ;
+            //   this.map.blocsquare( this.joueurs[i].mapX   , this.joueurs[i].mapY, this.joueurs[i].width , this.joueurs[i].height ) ;
+            table += "" +
+                "<tr>" +
+                    "<td> " +  this.joueurs[i].name +" </td>" +
+                    "<td> " + this.joueurs[i].kill  + "</td>" +
+                    "<td> " +  this.joueurs[i].dead +"</td>" +
+                    "<td>"+ 0 + "</td> " +
+                     "<td>"+ 0 + "</td> " +
+                "</tr> ";
+            if(this.joueurs[i].etat == "life")
+            {
+                bloc.makeSquare(this.joueurs[i].mapX   , this.joueurs[i].mapY, this.joueurs[i].width , this.joueurs[i].height , this.joueurs[i].team , this.viewX , this.viewY) ;
+
+            }
         }
+        table +=  "</tbody></table>" ;
+        $('#score').html(table);
+
     }
     function updatePositionPerso()
     {
@@ -228,13 +310,17 @@ function PartyLocal( socket)
     function sendYourShoot(bullet)
     {
         var data ;
-        data = {  vitesseX: bullet.vitesseX , vitesseY: bullet.vitesseY , x: bullet.x , y:bullet.y }        ;
+        data = {  vitesseX: bullet.vitesseX , vitesseY: bullet.vitesseY , x: bullet.x , y:bullet.y , timeShoot:bullet.timeShoot}        ;
         this.socket.emit('sendShoot' , data ) ;
     }
 
-    function addShoot(x , y , vX , vY , username)
+    function addShoot(x , y , vX , vY , username, time)
     {
-        var o = new Bullet(x ,  y+2  , this.context  )  ;
+        var latence =  this.getTimeAction() ;
+        latence = latence - time ;
+        console.log(" latence => " +latence) ;
+
+        var o = new Bullet(x ,  y+2  , this.context , time )  ;
         for(var i = 0 ;  i< this.joueurs.length ; i++)
         {
             if(this.joueurs[i].name == username )
@@ -269,19 +355,19 @@ function PartyLocal( socket)
     function updateAllPlayers(data)
     {
 
-         for(  var i = 0 ; i<data.length ; i++)
-         {
+        for(  var i = 0 ; i<data.length ; i++)
+        {
 
-             this.updatePlayers(data[i].name , data[i].x , data[i].y , data[i].team) ;
-         }
+            this.updatePlayers(data[i].name , data[i].x , data[i].y , data[i].team) ;
+        }
     }
     function updatePlayers(namePlayer , x , y ,team)
-      {
-          if(namePlayer != null)
-          {
-              trouver = false ;
-             for(var i = 0 ; i < this.joueurs.length ; i++)
-             {
+    {
+        if(namePlayer != null)
+        {
+           var  trouver = false ;
+            for(var i = 0 ; i < this.joueurs.length ; i++)
+            {
                 if(namePlayer == this.joueurs[i].name )
                 {
                     this.joueurs[i].mapX = x ;
@@ -289,22 +375,22 @@ function PartyLocal( socket)
                     this.joueurs[i].team = team ;
                     trouver = true ;
                 }
-             }
-              if(!trouver)
-              {
-                 var player = new personnage(300 , 300 , this.context) ;
-                  player.name = namePlayer ;
-                  player.mapX = x ;
-                  player.mapY = y ;
-                  player.team = team ;
+            }
+            if(!trouver)
+            {
+                var player = new personnage(300 , 300 , this.context) ;
+                player.name = namePlayer ;
+                player.mapX = x ;
+                player.mapY = y ;
+                player.team = team ;
 
-                 this.joueurs.push(player) ;
+                this.joueurs.push(player) ;
 
-              }
-          }
+            }
+        }
 
 
-      }
+    }
     function outPlayer(namePlayer)
     {
         for(var i = 0 ; i< this.joueurs.length ; i++)
@@ -317,13 +403,61 @@ function PartyLocal( socket)
     }
     function choixEquipe()
     {
-           if (this.joueurs.length == 1 || this.joueurs.length == 3 )
-           {
-               this.p.mapX = 2900 ;
-               this.p.mapY = 300 ;
-               this.viewX = 2600 ;
-               this.p.team = "yellow" ;
-           }
+        if (this.joueurs.length == 1 || this.joueurs.length == 3 )
+        {
+            this.p.mapX = 2900 ;
+            this.p.mapY = 300 ;
+            this.viewX = 2600 ;
+            this.p.team = "yellow" ;
+        }
     }
+    function restart()
+    {
+        this.shoots = new Array() ;
+         for( var i = 0 ; i< this.joueurs.length ; i++)
+         {
 
+              if(this.joueurs[i].team == "yellow")
+              {
+                  this.joueurs[i].mapX = 2900 ;
+                  this.joueurs[i].mapY = 300 ;
+                  this.viewX = 2600 ;
+                  this.viewY = 0 ;
+
+              }else
+              {
+                  this.joueurs[i].mapX = 100 ;
+                  this.joueurs[i].mapY = 300 ;
+                  this.viewX = -200 ;
+                  this.viewY = 0 ;
+              }
+             this.joueurs[i].etat = "life" ;
+
+         }
+        if(this.p.team == "yellow")
+        {
+
+
+            this.p.mapX = 2900 ;
+            this.p.mapY = 300 ;
+
+        }else
+        {
+            this.p.mapX = 100 ;
+            this.p.mapY = 300 ;
+            this.viewX = -200 ;
+            this.viewY = 0 ;
+
+        }
+        this.p.vitesseX = 0 ;
+        this.p.vitesseY = 4 ;
+        this.p.etat = "life" ;
+
+    }
+    function getTimeAction()
+    {
+       var timestamp = new Date().getTime()  ;
+       var diff =     timestamp - this.timeStart ;
+       return diff ;
+    }
 }

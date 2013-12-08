@@ -13,9 +13,10 @@ function personnage(positionX , positionY , c)
      this.width = 20 ;
      this.height = 50 ;
      this.gun = new Gun();
-     this.life = 5 ;
+     this.life = 1 ;
      this.dead = 0 ;
      this.kill = 0 ;
+     this.etat = "life" ;
 
      this.team = "blue" ;
 
@@ -40,7 +41,7 @@ function personnage(positionX , positionY , c)
          square = new Geometrique(this.context) ;
          square.square(this.x, this.y, this.width, this.height, "green") ;
      }
-     function shoot(mouseX , mouseY )
+     function shoot(mouseX , mouseY , timeShoot )
      {
          var puissance = 15 ;
          var angle = Math.atan2(this.x-mouseX, this.y-mouseY)   ;
@@ -48,7 +49,16 @@ function personnage(positionX , positionY , c)
          var dy    = puissance*Math.cos(angle);
 
 
-         var o = new Bullet(this.mapX , (this.mapY +2)  , this.context  )  ;
+         var o = new Bullet(this.mapX , (this.mapY +2)  , this.context  ,timeShoot )  ;
+
+         /*
+         Excuter le son
+          */
+         var audio = new Audio("heat-vision.mp3");
+         audio.volume = 0.3 ;
+         audio.play() ;
+         /*******/
+
          o.width = 10 ;
          o.height = 10 ;
          o.vitesseX = dx ;

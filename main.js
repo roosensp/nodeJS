@@ -41,7 +41,7 @@ socket.on('updatechat', function (username, data) {
     $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
 });
 socket.on('start', function (e) {
-    alert("START ") ;
+
     party.start() ;
 });
 socket.on('updatePlayersPosition', function (username, data) {
@@ -56,7 +56,7 @@ socket.on('updatePlayersPosition', function (username, data) {
 socket.on('updateShoot', function (username, data) {
 
 
-    party.addShoot(data.x , data.y , data.vitesseX , data.vitesseY , username) ;
+    party.addShoot(data.x , data.y , data.vitesseX , data.vitesseY , username , data.timeShoot) ;
 
 
 });
@@ -105,7 +105,7 @@ document.onmousemove = mouseMove ;
 // click pour tirer
 function click()
 {
-    b =  party.p.shoot( party.mousePositionX , party.mousePositionY ) ;
+    b =  party.p.shoot( party.mousePositionX , party.mousePositionY  , party.getTimeAction() ) ;
   //  party.shoots.push(b) ;
     party.sendYourShoot(b) ;
 
